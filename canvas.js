@@ -5,9 +5,10 @@ Bugs
 
 TODO
 - Make algorithms more efficient
+- Make a "Wrapping World option"
 - Clean up various code bits
 - Add more user inputs / info
-- Add more analytics
+- Add analytics
 - Make UI prettier
 
 */
@@ -28,39 +29,38 @@ function animate() {
 
 function updateDOM() {
 
-		living = board.livingCells();
+	living = board.livingCells();
 
-		document.getElementById("generationheader").innerHTML = "Generation " + board.generation;
-		document.getElementById("livingcells").innerHTML = "Living Cells: " + living + " (" + (living)/(BOARD_ROWS*BOARD_ROWS) + "% of total cells)";
+	document.getElementById("generationheader").innerHTML = "Generation " + board.generation;
+	document.getElementById("livingcells").innerHTML = "Living Cells: " + living + " (" + (living) / (BOARD_ROWS * BOARD_ROWS) + "% of total cells)";
 
 }
 
-function addListeners(){
-	
+function addListeners() {
+
 	canvas.addEventListener('click', function (event) {
 
 		mouseX = event.clientX;
 		mouseY = event.clientY;
-		
-		for (var i=0; i<BOARD_ROWS; i++)			
-				for(var j=0; j<BOARD_COLS; j++)
-					if (board.cellArray[i][j].checkCollisionWithMouse(mouseX, mouseY)){
-						board.cellArray[i][j].toggleState();
-						return;
-					}
-						
+
+		for (var i = 0; i < BOARD_ROWS; i++)
+			for (var j = 0; j < BOARD_COLS; j++)
+				if (board.cellArray[i][j].checkCollisionWithMouse(mouseX, mouseY)) {
+					board.cellArray[i][j].toggleState();
+					return;
+				}
+
 
 	});
-	
+
 };
 
-function toggleSimulation(){
+function toggleSimulation() {
 	simulate = !simulate;
 }
 
 // Initialization
 var canvas = document.querySelector('canvas');
-var drawingMode = false;
 canvas.width = 1000;
 canvas.height = 1000;
 

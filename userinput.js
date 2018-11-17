@@ -1,17 +1,17 @@
-function stepButton(){
+function stepButton() {
     board.update();
-    simulate=false;
+    simulate = false;
 };
 
-function simulationButton(){
+function simulationButton() {
     toggleSimulation();
 };
 
-function randomiseButton(){
+function randomiseButton() {
     board.randomise();
 };
 
-function resetButton(){
+function resetButton() {
     board.reset();
-    simulate=false;
+    simulate = false;
 }

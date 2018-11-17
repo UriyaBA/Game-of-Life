@@ -1,7 +1,7 @@
 class Cell {
 
-    constructor(x, y, w, i, j){
-		
+	constructor(x, y, w, i, j) {
+
 		var aliveColor = "green";
 		var deadColor = "hsl(0, 0%, 60%)";
 		this.color = deadColor;
@@ -14,41 +14,41 @@ class Cell {
 		this.w = w;
 		this.i = i;
 		this.j = j;
-		
-		this.kill = function(){			
+
+		this.kill = function () {
 			this.alive = false;
-			this.color = deadColor;						
+			this.color = deadColor;
 		};
-		
-		this.revive = function(){			
+
+		this.revive = function () {
 			this.alive = true;
-			this.color = aliveColor;				
+			this.color = aliveColor;
 		};
-		
-		this.toggleState = function(){			
+
+		this.toggleState = function () {
 			if (this.alive)
 				this.kill();
 			else
-				this.revive();			
+				this.revive();
 		};
 
-		this.nextGen = function(){
+		this.nextGen = function () {
 			if (this.nextAlive)
 				this.revive();
-			else 
+			else
 				this.kill();
 			this.nextAlive = false;
 		};
-		
-		this.checkCollisionWithMouse = function(mouseX, mouseY){			
-			return ( (mouseX >= this.x && mouseX <= this.x + this.w) && (mouseY >= this.y && mouseY <= this.y + this.w) )			
+
+		this.checkCollisionWithMouse = function (mouseX, mouseY) {
+			return ((mouseX >= this.x && mouseX <= this.x + this.w) && (mouseY >= this.y && mouseY <= this.y + this.w))
 		};
-		
-		this.draw = function (){
-			c.fillStyle = this.color;			
+
+		this.draw = function () {
+			c.fillStyle = this.color;
 			c.fillRect(this.x, this.y, this.w, this.w);
 		};
 
-    }
+	}
 
 }

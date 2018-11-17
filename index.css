@@ -7,18 +7,16 @@ body {
     background-color: hsl(341, 100%, 90%);
 }
 
-#siminfo {
+#ui {
     position: absolute;
-    left: 70%;
-    top: 30%; 
+    top: 10%;
+    left: 60%;;
+}
+
+#simcontrol {
+    margin-top: 5%;
 }
 
 #livingcells {
     color: green;
-}
-
-#simcontrol {
-    position: absolute;
-    left: 70%;
-    top: 50%;    
 }
