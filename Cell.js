@@ -45,10 +45,8 @@ class Cell {
 		};
 		
 		this.draw = function (){
-
 			c.fillStyle = this.color;			
 			c.fillRect(this.x, this.y, this.w, this.w);
-
 		};
 
     }
