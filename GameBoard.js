@@ -6,6 +6,10 @@ class GameBoard {
 		var gridColor = 'gray';
 		
 		this.cellArray = [];
+		this.rows = rows;
+		this.cols = cols;
+
+
 		this.generation = 0;
 		
 		for (var i=0; i<rows; i++){
@@ -24,7 +28,8 @@ class GameBoard {
 
 			var neighbors = 0;
 
-			if (cell.i > 0 && cell.j > 0 && cell.j < cols-1){
+			// Box World
+			if (cell.i > 0 && cell.j > 0 && cell.j < this.cols-1){
 				if (this.cellArray[cell.i-1][cell.j-1].alive)
 					neighbors++;
 				if (this.cellArray[cell.i-1][cell.j].alive)
@@ -33,14 +38,14 @@ class GameBoard {
 					neighbors++;
 			}
 
-			if (cell.j > 0 && cell.j < cols-1){
+			if (cell.j > 0 && cell.j < this.cols-1){
 				if (this.cellArray[cell.i][cell.j-1].alive)
 					neighbors++;
 				if (this.cellArray[cell.i][cell.j+1].alive)
 					neighbors++;
 			}
 
-			if (cell.i < rows-1 && cell.j > 0 && cell.j < cols-1){
+			if (cell.i < this.rows-1 && cell.j > 0 && cell.j < this.cols-1){
 				if (this.cellArray[cell.i+1][cell.j-1].alive)
 					neighbors++;
 				if (this.cellArray[cell.i+1][cell.j].alive)
@@ -57,8 +62,8 @@ class GameBoard {
 
 			let living = 0;
 
-			for (var i=0; i<rows; i++)
-				for(var j=0; j<cols; j++)
+			for (var i=0; i<this.rows; i++)
+				for(var j=0; j<this.cols; j++)
 					if (this.cellArray[i][j].alive)
 						living += 1;
 			
@@ -69,8 +74,8 @@ class GameBoard {
 		// Calculating expected generation's cells' state
 		this.prepareNextGen = function(){
 
-			for (var i=0; i<rows; i++){	
-				for (var j=0; j<cols; j++){
+			for (var i=0; i<this.rows; i++){	
+				for (var j=0; j<this.cols; j++){
 
 					var currentCell = this.cellArray[i][j];
 					var currentNeighbors = this.livingNeighbors(currentCell);
@@ -91,8 +96,8 @@ class GameBoard {
 
 			this.generation = 0;
 
-			for (var i=0; i<rows; i++)			
-				for(var j=0; j<cols; j++)
+			for (var i=0; i<this.rows; i++)			
+				for(var j=0; j<this.cols; j++)
 					this.cellArray[i][j].kill();
 
 		};
@@ -101,9 +106,9 @@ class GameBoard {
 
 			this.generation = 0;
 
-			for (var i=0; i<rows; i++){		
+			for (var i=0; i<this.rows; i++){		
 
-				for(var j=0; j<cols; j++){
+				for(var j=0; j<this.cols; j++){
 
 					let r = Math.round((Math.random()));
 					let cell = this.cellArray[i][j];
@@ -125,15 +130,15 @@ class GameBoard {
 
 			this.prepareNextGen();
 
-			for (var i=0; i<rows; i++)
-				for (var j=0; j<cols; j++)
+			for (var i=0; i<this.rows; i++)
+				for (var j=0; j<this.cols; j++)
 					this.cellArray[i][j].nextGen();
 
 		};
 		
 		this.drawBoard = function(){
 			
-			for (var i=0; i<rows; i++){
+			for (var i=0; i<this.rows; i++){
 				
 				c.strokeStyle = gridColor;
 				c.beginPath();
@@ -141,7 +146,7 @@ class GameBoard {
 				c.lineTo(i * cellWidth, canvas.height);
 				c.stroke();
 				
-				for(var j=0; j<cols; j++){
+				for(var j=0; j<this.cols; j++){
 					
 					c.strokeStyle = gridColor;
 					c.beginPath();
@@ -157,8 +162,8 @@ class GameBoard {
 		
 		this.drawCells = function(){
 			
-			for (var i=0; i<rows; i++)			
-				for(var j=0; j<cols; j++)
+			for (var i=0; i<this.rows; i++)			
+				for(var j=0; j<this.cols; j++)
 					this.cellArray[i][j].draw();
 					
 		};
