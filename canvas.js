@@ -44,8 +44,11 @@ function addListeners(){
 		
 		for (var i=0; i<BOARD_ROWS; i++)			
 				for(var j=0; j<BOARD_COLS; j++)
-					if (board.cellArray[i][j].checkCollisionWithMouse(mouseX, mouseY))
+					if (board.cellArray[i][j].checkCollisionWithMouse(mouseX, mouseY)){
 						board.cellArray[i][j].toggleState();
+						return;
+					}
+						
 
 	});
 	

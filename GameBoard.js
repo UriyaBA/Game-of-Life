@@ -75,6 +75,7 @@ class GameBoard {
 					var currentCell = this.cellArray[i][j];
 					var currentNeighbors = this.livingNeighbors(currentCell);
 
+					// Game Rules
 					if ( (!currentCell.alive && currentNeighbors == 3) || (currentCell.alive && (currentNeighbors == 2 || currentNeighbors == 3)) )
 						currentCell.nextAlive = true;
 
